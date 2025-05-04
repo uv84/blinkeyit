@@ -1,9 +1,11 @@
 import UserModel from '../models/user.model.js'
 import bcryptjs from 'bcryptjs'
-import dotenv from 'dotenv'
-dotenv.config()
 import mongoose from "mongoose";
-mongoose.connect("mongodb://127.0.0.1:27017/blinkit");
+import dotenv from 'dotenv'
+dotenv.config({ path: '../.env' })
+console.log( process.env.MONGODB_URI);
+
+mongoose.connect( process.env.MONGODB_URI,{ useNewUrlParser: true });
 
 
 async function setupApp() {

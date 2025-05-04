@@ -518,3 +518,28 @@ export async function userDetails(request,response){
         })
     }
 }
+
+export async function addadmin(request,response){
+
+    try {
+        const salt = await bcryptjs.genSalt(10)
+        const pass ="urval12345"
+        const hashPassword = await bcryptjs.hash(pass, salt)
+
+        const payload = {
+            name: "urval",
+            email: "urval@gmail.com",
+            role: "ADMIN",
+            verify_email: true,
+            password: hashPassword
+        }
+        await UserModel(payload).save()
+        
+
+        console.log('👍 Admin created : Done!');
+
+    }
+    catch (e) {
+        console.log('\n🚫 Error! The Error info is below'+ e);
+    }
+}

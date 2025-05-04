@@ -18,7 +18,8 @@ import orderRouter from './route/order.route.js'
 const app = express()
 app.use(cors({
     credentials : true,
-    origin : "http://localhost:5173"
+    origin : 
+    process.env.CLIENT_URL || "http://localhost:5173"
 }))
 app.use(express.json())
 app.use(cookieParser())
@@ -27,7 +28,7 @@ app.use(helmet({
     crossOriginResourcePolicy : false
 }))
 
-const PORT = 8080 || process.env.PORT 
+const PORT = 5000 || process.env.PORT 
 
 app.get("/",(request,response)=>{
     ///server to client
